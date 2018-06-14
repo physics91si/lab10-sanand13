@@ -6,19 +6,26 @@ import sys
 #Enter values for a, b, and c in the command line
 #e.g. run: >python quadratic.py 1 2 -15
 def main():
-    a = sys.argv[1]
-    b = sys.argv[2]
-    c = sys.argv[3]
-    x1, x2 = find_roots(a, b, c)
-    print ("This is x1: %f" %x1)
-    print ("This is x2: %f" %x2)
+    try:
+        a = int(sys.argv[1])
+        b = int(sys.argv[2])
+        c = int(sys.argv[3])
+        x1, x2 = find_roots(a, b, c)
+        print ("This is x1: %f" %x1)
+        print ("This is x2: %f" %x2)
+    except ZeroDivisionError:
+        print("Leading coefficient cannot be 0.")
+    except TypeError:
+        print("Sorry, imaginary roots.")
+    except ValueError:
+        print("Only numerical input is allowed.")
 
 
 def find_roots(a,b,c):
-    mid = b^2 - 4*a*c
-    sqrt_mid = mid^(1/2)
-    x1 = (-b + sqrt_mid)/2*a
-    x2 = (-b - sqrt_mid)/2*a
+    mid = b**2 - 4*a*c
+    sqrt_mid = mid**(1/2)
+    x1 = (-b + sqrt_mid)/(2*a)
+    x2 = (-b - sqrt_mid)/(2*a)
     return x1, x2
 
 
